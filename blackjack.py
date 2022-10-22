@@ -2,8 +2,8 @@ import random
 from enum import Enum
 
 class Action(Enum):
-	HIT = 1
-	STAND = 2
+	HIT = 0
+	STAND = 1
 
 class Blackjack():
 
@@ -21,6 +21,7 @@ class Blackjack():
 		self.playerSum = self.findSum(self.playerCards)
 		self.casinoSum = self.findSum(self.casinoCards)
 		self.hasAce = 1 in self.playerCards
+		return self.getState()
 
 	def getState(self):
 		return (self.casinoSum, self.playerSum, self.hasAce)
@@ -29,14 +30,14 @@ class Blackjack():
 		card = self.getCard()
 		self.playerCards.append(card)
 		self.playerSum = self.findSum(self.playerCards)
-		print("Player Hits: {0}. Current player sum: {1}".format(card, self.playerSum))
+		#print("Player Hits: {0}. Current player sum: {1}".format(card, self.playerSum))
 
 	def playerStand(self):
 		while self.casinoSum < 17: # Stands at soft 17
 			card = self.getCard()
 			self.casinoCards.append(card)
 			self.casinoSum = self.findSum(self.casinoCards)
-			print("Casino Hits: {0}. Current casino sum: {1}".format(card, self.casinoSum))
+			#print("Casino Hits: {0}. Current casino sum: {1}".format(card, self.casinoSum))
 
 	def step(self, action):
 		if action == Action.HIT:
@@ -120,6 +121,6 @@ class Blackjack():
 		print("Tie percentaje is {0}%".format((tie/episodes)*100))
 
 
-blackjack = Blackjack()
-print(blackjack.dealCards(3))
-blackjack.runSimulation(5000)
+#blackjack = Blackjack()
+#print(blackjack.dealCards(3))
+#blackjack.runSimulation(5000)
