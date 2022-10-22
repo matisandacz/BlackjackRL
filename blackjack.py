@@ -2,8 +2,8 @@ import random
 from enum import Enum
 
 class Action(Enum):
-	HIT = 0
-	STAND = 1
+	HIT = 1
+	STAND = 0
 
 class Blackjack():
 
@@ -24,7 +24,7 @@ class Blackjack():
 		return self.getState()
 
 	def getState(self):
-		return (self.casinoSum, self.playerSum, self.hasAce)
+		return (self.playerSum, self.casinoSum, self.hasAce)
 
 	def playerHit(self):
 		card = self.getCard()
